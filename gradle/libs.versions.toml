@@ -11,6 +11,7 @@ compose-bom = "2022.10.00"
 constraintLayout = "1.0.1"
 hilt = "2.45"
 hiltNavigation = "1.0.0"
+coil = "2.3.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -31,6 +32,7 @@ constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayo
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+coil = { group ="io.coil-kt", name ="coil", version.ref = "coil"}
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }

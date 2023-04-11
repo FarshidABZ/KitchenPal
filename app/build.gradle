@@ -63,11 +63,13 @@ dependencies {
     implementation libs.material3
     implementation libs.constraintLayout
 
-    //Hilt
+    // Hilt
     implementation libs.hilt.navigation
     implementation libs.hilt
     kapt libs.hilt.compiler
 
+    // Coil
+    implementation libs.coil
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

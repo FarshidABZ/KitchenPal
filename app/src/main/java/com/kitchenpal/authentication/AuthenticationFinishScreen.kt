@@ -4,6 +4,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun AuthenticationFinishScreen(viewModel: AuthenticationViewModel) {
+internal fun AuthenticationFinishScreen(viewModel: AuthenticationViewModel) {
     Text(text = "Welcome to KitchenPal")
 }

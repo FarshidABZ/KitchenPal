@@ -9,20 +9,17 @@ import com.kitchenpal.R
 import com.kitchenpal.authentication.domain.AuthenticationInitializeUseCase
 import com.kitchenpal.chat.ChatListViewType
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthenticationViewModel @Inject constructor(private val useCase: AuthenticationInitializeUseCase) :
+internal class AuthenticationViewModel @Inject constructor(private val useCase: AuthenticationInitializeUseCase) :
     ViewModel() {
 
     private val _usernameState = mutableStateOf("")
     val usernameState: State<String> = _usernameState
-
-    private val _authenticationState = MutableStateFlow<AuthenticationSate>(AuthenticationSate.Init)
-    val authenticationState: StateFlow<AuthenticationSate> = _authenticationState
 
     private val _authenticationMessagesFlow: MutableList<ChatListViewType> =
         arrayListOf<ChatListViewType>().toMutableStateList()
@@ -36,14 +33,6 @@ class AuthenticationViewModel @Inject constructor(private val useCase: Authentic
                 _authenticationMessagesFlow.add(it)
             }
         }
-    }
-
-    fun moveToFinishState() {
-        _authenticationState.value = AuthenticationSate.Finish
-    }
-
-    fun moveToInitScreen() {
-        _authenticationState.value = AuthenticationSate.Init
     }
 
     fun onUsernameChanged(newText: String) {

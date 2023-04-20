@@ -1,10 +1,5 @@
 package com.kitchenpal.chat
 
-import androidx.compose.animation.core.FiniteAnimationSpec
-import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
-import androidx.compose.animation.core.Spring.StiffnessHigh
-import androidx.compose.animation.core.VisibilityThreshold
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -28,14 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ParentDataModifier
-import androidx.compose.ui.platform.InspectorInfo
-import androidx.compose.ui.platform.InspectorValueInfo
-import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.kitchenpal.ui.theme.KitchenPalTheme
 
@@ -51,9 +40,13 @@ fun ChatLazyColumn(
 
     LazyColumn(modifier = modifier, state = listState, verticalArrangement = verticalArrangement) {
         itemsIndexed(items) { index, item ->
-            Box(modifier = Modifier.padding(bottom = KitchenPalTheme.dimens.spaceXLarge).animateItemPlacement(
-                tween(300, -100)
-            )) {
+            Box(
+                modifier = Modifier
+                    .padding(bottom = KitchenPalTheme.dimens.spaceXLarge)
+                    .animateItemPlacement(
+                        tween(300, -100)
+                    )
+            ) {
                 when (item) {
                     is ChatListViewType.IncomingTextMessage ->
                         IncomingTextMessageView(text = item.message, onItemClickListener)

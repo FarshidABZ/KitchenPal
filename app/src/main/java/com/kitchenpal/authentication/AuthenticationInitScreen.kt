@@ -25,13 +25,13 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import androidx.navigation.NavHostController
 import com.kitchenpal.chat.ChatLazyColumn
 import com.kitchenpal.ui.theme.Elevation
 import com.kitchenpal.ui.theme.KitchenPalTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthenticationInitScreen(viewModel: AuthenticationViewModel) {
+internal fun AuthenticationInitScreen(viewModel: AuthenticationViewModel, navController: NavHostController) {
     val constraintSet = ConstraintSet {
         val chatList = createRefFor("chatList")
         val signupButton = createRefFor("signupButton")
@@ -79,20 +79,26 @@ fun AuthenticationInitScreen(viewModel: AuthenticationViewModel) {
         UserInputField(
             modifier = Modifier.layoutId("userInput"),
             value = usernameState,
-            viewModel = viewModel,
             maxChar = 15,
+            onDoneClicked = {
+                navController.navigate("finish")
+            },
             onValueChange = { newText ->
                 viewModel.onUsernameChanged(newText)
             })
 
         Button(
             modifier = Modifier.layoutId("signupButton"),
-            onClick = { viewModel.moveToFinishState() }) {
+            onClick = {
+                navController.navigate("finish")
+            }) {
             Text(text = "Get Start")
         }
 
         Button(modifier = Modifier.layoutId("login"),
-            onClick = { viewModel.moveToFinishState() }) {
+            onClick = {
+                navController.navigate("finish")
+            }) {
             Text(text = "Already have account")
         }
     }
@@ -103,8 +109,8 @@ fun AuthenticationInitScreen(viewModel: AuthenticationViewModel) {
 fun UserInputField(
     modifier: Modifier = Modifier,
     value: String,
-    viewModel: AuthenticationViewModel,
     maxChar: Int = Int.MAX_VALUE,
+    onDoneClicked: () -> Unit,
     onValueChange: (String) -> Unit
 ) {
     val shape = RoundedCornerShape(
@@ -128,7 +134,7 @@ fun UserInputField(
         ),
         keyboardActions = KeyboardActions(
             onDone = {
-                viewModel.moveToFinishState()
+                onDoneClicked()
             }
         ),
         colors = TextFieldDefaults.textFieldColors(

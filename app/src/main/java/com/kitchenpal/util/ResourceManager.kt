@@ -1,6 +1,7 @@
 package com.kitchenpal.util
 
 import android.content.Context
+import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 
 /**
@@ -16,6 +17,7 @@ interface ResourceManager {
      * @return String
      */
     fun getString(@StringRes resId: Int): String
+    fun getStringArray(@ArrayRes resId: Int): Array<String>
 }
 
 /**
@@ -27,5 +29,9 @@ internal class ResourceManagerImpl constructor(private val context: Context) :
     ResourceManager {
     override fun getString(resId: Int): String {
         return context.getString(resId)
+    }
+
+    override fun getStringArray(resId: Int): Array<String> {
+        return context.resources.getStringArray(resId)
     }
 }

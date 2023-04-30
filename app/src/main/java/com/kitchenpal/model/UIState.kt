@@ -1,7 +1,9 @@
 package com.kitchenpal.model
 
-open class UIState {
-    data class Loading(val isLoading: Boolean) : UIState()
-    data class Error(val error: Any)
-    data class Success(val data: Any)
+sealed class UIState<out T> {
+    data class Error(val error: Any? = null) : UIState<Any>()
+    data class Success<out T>(val data: T? = null) : UIState<T>()
+    object Empty : UIState<Nothing>()
+    object Loading : UIState<Nothing>()
+    object Idle : UIState<Nothing>()
 }

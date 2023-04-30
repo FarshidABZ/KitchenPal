@@ -19,6 +19,10 @@ fun Authentication() {
             AuthenticationInitScreen(viewModel = viewModel, navController)
         }
 
+        composable("login") {
+            LoginScreen(viewModel = viewModel, navController)
+        }
+
         composable("finish") {
             AuthenticationFinishScreen(viewModel = viewModel)
         }

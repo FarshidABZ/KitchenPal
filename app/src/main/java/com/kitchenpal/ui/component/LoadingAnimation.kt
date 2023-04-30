@@ -79,17 +79,16 @@ object LoadingAnimation {
 
         val dys = dots.map { it.value }
 
-        val travelDistance = with(LocalDensity.current) { dotsSize.toPx() }
+        val travelDistance = with(LocalDensity.current) { dotsSize.toPx() * 2 }
 
         Row(
-            modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             dys.forEachIndexed { index, dy ->
                 Box(
                     Modifier
-                        .size(24.dp)
+                        .size(dotsSize)
                         .graphicsLayer {
                             translationY = -dy * travelDistance
                         },

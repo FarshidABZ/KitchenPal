@@ -74,6 +74,9 @@ dependencies {
     // Navigation
     implementation libs.navigation
 
+    // Lottie
+    implementation libs.lottie
+
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core

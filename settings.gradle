@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "KitchenPal"
 include ':app'
+include ':core:designsystem'

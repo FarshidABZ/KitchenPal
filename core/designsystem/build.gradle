@@ -1,19 +1,19 @@
 plugins {
-    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
 }
 
 android {
-    namespace 'com.kitchenpal'
+    namespace 'com.core.designsystem'
     compileSdk libs.versions.compileSdk.get().toInteger()
+
     defaultConfig {
-        applicationId "com.kitchenpal"
         minSdk libs.versions.minSdk.get().toInteger()
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -38,38 +38,17 @@ android {
 }
 
 dependencies {
-    implementation project(':core:designsystem')
     implementation libs.core.ktx
-    implementation libs.lifecycle.runtime.ktx
+    implementation platform(libs.kotlin.bom)
+
     implementation platform(libs.compose.bom)
-    implementation libs.activity.compose
-    implementation libs.ui.tooling.preview
     implementation libs.material3
-    implementation libs.constraintLayout
+    implementation libs.compose.ui
+    implementation libs.ui.tooling.preview
 
-    // Hilt
-    implementation libs.hilt.navigation
-    implementation libs.androidHilt
-    debugImplementation libs.androidx.ui.tooling
-    kapt libs.hilt.compiler
-
-    // Coil
-    implementation libs.coil
-
-    // Navigation
-    implementation libs.navigation
-
-    // Lottie
-    implementation libs.lottie
-
+    implementation libs.appcompat
+    implementation libs.material
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core
-    androidTestImplementation platform(libs.compose.bom)
-    androidTestImplementation libs.ui.test.junit4
-    debugImplementation libs.ui.test.manifest
-}
-
-kapt {
-    correctErrorTypes true
 }

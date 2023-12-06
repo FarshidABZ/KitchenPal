@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737441781658",
+    "project_id": "kitchenpal-personal",
+    "storage_bucket": "kitchenpal-personal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737441781658:android:a7dda35e2b318cf22ccc23",
+        "android_client_info": {
+          "package_name": "com.kitchenpal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGP_w1p8HX9r88lb7dHffzC3cXUUe_2ek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

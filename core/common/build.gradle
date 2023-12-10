@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.common'
+    namespace 'com.core.common'
 
     compileSdk libs.versions.compileSdk.get().toInteger()
 
@@ -25,17 +25,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtVersion.get()
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 

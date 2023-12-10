@@ -43,6 +43,7 @@ dependencies {
     api platform(libs.compose.bom)
     api libs.material3
     api libs.compose.ui
+    api libs.compose.runtime
     api libs.ui.tooling.preview
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.ui.test.manifest

@@ -50,3 +50,8 @@ internal val md_theme_light_surfaceContainerLow = Color(0xFFF2F3F6)
 internal val md_theme_light_surfaceContainerLowest = Color(0xFFFFFFFF)
 internal val md_theme_light_surfaceDim = Color(0xFFE9EBEF)
 internal val md_theme_light_surfaceBright = Color(0xFFF0F2F4)
+
+internal val md_theme_light_disable_primary = Color(0x1F454EA8)
+internal val md_theme_light_disable_primary_content = Color(0x61454EA8)
+internal val md_theme_light_disable_button = Color(0x242A331F)
+internal val md_theme_light_disable_button_content = Color(0x612A331F)

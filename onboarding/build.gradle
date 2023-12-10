@@ -1,19 +1,19 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.core.designsystem'
-    compileSdk libs.versions.compileSdk.get().toInteger()
+    namespace 'com.kitchenpal.onboarding'
+    compileSdk 34
 
     defaultConfig {
-        minSdk libs.versions.minSdk.get().toInteger()
+        minSdk 24
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        vectorDrawables {
-            useSupportLibrary true
-        }
     }
 
     buildTypes {
@@ -23,32 +23,26 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtVersion.get()
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
     project(":core:common")
+    project(":core:designsystem")
 
-    api platform(libs.compose.bom)
-    api libs.material3
-    api libs.compose.ui
-    api libs.ui.tooling.preview
+    implementation libs.compose.viewmodel
+
+    implementation libs.androidHilt
+    implementation libs.hilt.navigation
+    kapt libs.hilt.compiler
+
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.ui.test.manifest
-
-    api libs.appcompat
-    api libs.material
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

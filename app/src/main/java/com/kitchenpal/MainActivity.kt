@@ -9,8 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import com.core.designsystem.component.button.TonalButton
 import com.core.designsystem.theme.KitchenPalTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +25,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    TonalButton(text = "Farshid Abazari") {
+                        
+                    }
                 }
             }
         }

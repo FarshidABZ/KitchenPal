@@ -4,7 +4,8 @@ plugins {
 }
 
 android {
-    namespace 'com.core.designsystem'
+    namespace 'com.example.common'
+
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
@@ -22,6 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -38,17 +40,8 @@ android {
 }
 
 dependencies {
-    project(":core:common")
-
-    api platform(libs.compose.bom)
-    api libs.material3
-    api libs.compose.ui
-    api libs.ui.tooling.preview
-    debugImplementation libs.androidx.ui.tooling
-    debugImplementation libs.ui.test.manifest
-
-    api libs.appcompat
-    api libs.material
+    api libs.core.ktx
+    api platform(libs.kotlin.bom)
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

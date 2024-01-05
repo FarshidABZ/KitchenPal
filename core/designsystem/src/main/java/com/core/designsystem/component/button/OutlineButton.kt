@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.core.designsystem.R
@@ -52,10 +53,10 @@ fun OutlineButton(
             disabledContainerColor = disabledContainerColor,
             disabledContentColor = disabledContentColor
         ),
-        border = BorderStroke(1.dp, if(isEnable) outlineColor else disabledContainerColor),
+        border = BorderStroke(1.dp, if (isEnable) outlineColor else disabledContainerColor),
         onClick = onButtonClickListener
     ) {
-        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             if (leadingIcon != null) {
                 Image(
                     modifier = Modifier
@@ -67,7 +68,11 @@ fun OutlineButton(
                 )
             }
 
-            Text(text = text, style = MaterialTheme.typography.labelLarge)
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelLarge,
+                textAlign = TextAlign.Center
+            )
 
             if (trailingIcon != null) {
                 Image(
@@ -102,7 +107,11 @@ fun PreviewOutlineButton() {
 
             OutlineButton(text = "label ", trailingIcon = R.drawable.ic_plus_small) {
             }
-            OutlineButton(text = "label ", trailingIcon = R.drawable.ic_plus_small, isEnable = false) {
+            OutlineButton(
+                text = "label ",
+                trailingIcon = R.drawable.ic_plus_small,
+                isEnable = false
+            ) {
             }
         }
     }

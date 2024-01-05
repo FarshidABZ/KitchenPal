@@ -7,15 +7,16 @@ plugins {
 
 android {
     namespace 'com.kitchenpal.onboarding'
-    compileSdk 34
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk 24
-
+        minSdk libs.versions.minSdk.get().toInteger()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -38,14 +39,17 @@ android {
 }
 
 dependencies {
-    project(":core:common")
-    project(":core:designsystem")
+    implementation project(':core:common')
+    implementation project(':core:designsystem')
+    implementation project(':core:navigation')
 
     implementation libs.compose.viewmodel
 
     implementation libs.androidHilt
     implementation libs.hilt.navigation
     kapt libs.hilt.compiler
+
+    implementation libs.coil
 
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.ui.test.manifest

@@ -55,7 +55,7 @@ fun FilledButton(
         enabled = isEnable,
         onClick = onButtonClickListener
     ) {
-        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             if (leadingIcon != null) {
                 Image(
                     modifier = Modifier

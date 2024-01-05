@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    id 'kotlin-kapt'
 }
-
 android {
-    namespace 'com.core.designsystem'
+    namespace 'com.kitchenpal.authentication'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
@@ -38,19 +39,20 @@ android {
 }
 
 dependencies {
-    project(":core:common")
+    implementation project(':core:common')
+    implementation project(':core:designsystem')
+    implementation project(':core:navigation')
 
-    api platform(libs.compose.bom)
-    api libs.material3
-    api libs.compose.ui
-    api libs.compose.runtime
-    api libs.ui.tooling.preview
-    api libs.constraintLayout
+    implementation libs.compose.viewmodel
+
+    implementation libs.androidHilt
+    implementation libs.hilt.navigation
+    kapt libs.hilt.compiler
+
+    implementation libs.coil
+
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.ui.test.manifest
-
-    api libs.appcompat
-    api libs.material
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

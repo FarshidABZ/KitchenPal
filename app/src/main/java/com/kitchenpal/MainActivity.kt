@@ -10,8 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.core.designsystem.component.button.TonalButton
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.core.designsystem.theme.KitchenPalTheme
+import com.kitchenpal.authentication.navigation.authenticationScreen
+import com.kitchenpal.navigation.NavigationConstant
+import com.kitchenpal.onboarding.navigation.onboardingScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,17 +25,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KitchenPalTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    TonalButton(text = "Farshid Abazari") {
-                        
-                    }
-                }
+                val navController = rememberNavController()
+                KitchenPalNavHost(navController)
             }
         }
+    }
+}
+
+@Composable
+fun KitchenPalNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    startDestination: String = NavigationConstant.onboardingRoute,
+) {
+    NavHost(navController = navController, startDestination = startDestination) {
+        onboardingScreen(navController)
+        authenticationScreen()
     }
 }
 

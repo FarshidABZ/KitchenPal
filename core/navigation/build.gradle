@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.core.designsystem'
+    namespace 'com.kitchenpal.navigation'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
@@ -23,36 +25,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
+        jvmTarget = '1.8'
     }
     buildFeatures {
-        compose = true
+        compose true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtVersion.get()
     }
 }
 
 dependencies {
-    project(":core:common")
-
-    api platform(libs.compose.bom)
-    api libs.material3
-    api libs.compose.ui
-    api libs.compose.runtime
-    api libs.ui.tooling.preview
-    api libs.constraintLayout
-    debugImplementation libs.androidx.ui.tooling
-    debugImplementation libs.ui.test.manifest
-
-    api libs.appcompat
-    api libs.material
-
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.espresso.core
+    implementation libs.core.ktx
+    implementation libs.navigation
+    implementation libs.androidHilt
+    implementation libs.hilt.navigation
+    kapt libs.hilt.compiler
 }

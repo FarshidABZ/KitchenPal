@@ -37,10 +37,10 @@ import com.core.designsystem.theme.md_theme_light_surfaceContainerHighest
 fun ListIndicator(
     modifier: Modifier = Modifier,
     count: Int,
-    size: Int,
-    spacer: Int,
+    size: Dp,
+    spacer: Dp,
     selectedIndex: Int = 0,
-    indicatorSelectedLength: Int = 40,
+    indicatorSelectedLength: Dp = 40.dp,
     selectedColor: Color = MaterialTheme.colorScheme.primaryContainer,
     unselectedColor: Color = md_theme_light_surfaceContainerHighest
 ) {
@@ -61,11 +61,11 @@ fun ListIndicator(
 @Composable
 private fun IndicatorView(
     isSelected: Boolean,
-    size: Int,
-    indicatorSelectedLength: Int,
+    size: Dp,
+    indicatorSelectedLength: Dp,
     selectedColor: Color,
     unselectedColor: Color,
-    spacer: Int
+    spacer: Dp
 ) {
     val color: Color by animateColorAsState(
         targetValue = if (isSelected) {
@@ -79,9 +79,9 @@ private fun IndicatorView(
     )
     val width: Dp by animateDpAsState(
         targetValue = if (isSelected) {
-            indicatorSelectedLength.dp
+            indicatorSelectedLength
         } else {
-            size.dp
+            size
         },
         animationSpec = tween(
             durationMillis = 350,
@@ -93,14 +93,14 @@ private fun IndicatorView(
             Modifier
                 .size(
                     width = width,
-                    height = size.dp
+                    height = size
                 )
                 .clip(CircleShape)
                 .background(
                     color
                 )
         )
-        Spacer(modifier = Modifier.width(spacer.dp))
+        Spacer(modifier = Modifier.width(spacer))
     }
 }
 
@@ -117,8 +117,8 @@ fun PreviewListIndicator() {
         ) {
             ListIndicator(
                 count = 5,
-                size = 8,
-                spacer = 8,
+                size = 8.dp,
+                spacer = 8.dp,
                 selectedIndex = selectedPage,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -134,6 +134,5 @@ fun PreviewListIndicator() {
 
             Spacer(modifier = Modifier.height(80.dp))
         }
-
     }
 }

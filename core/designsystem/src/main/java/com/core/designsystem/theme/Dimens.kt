@@ -17,6 +17,7 @@ object Dimens {
     val spaceXXXLarge: Dp = 24.dp
     val spaceXXXXLarge: Dp = 32.dp
     val spaceXXXXXLarge: Dp = 40.dp
+    val startAndEndHeight: Dp = 256.dp
 }
 
 object Radius {

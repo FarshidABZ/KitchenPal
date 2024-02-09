@@ -40,7 +40,7 @@ fun KitchenPalNavHost(
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         onboardingScreen(navController)
-        authenticationScreen()
+        authenticationScreen(navController)
     }
 }
 

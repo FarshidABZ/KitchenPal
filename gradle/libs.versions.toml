@@ -1,15 +1,15 @@
 [versions]
-com-android-application = "8.2.1"
+com-android-application = "8.2.2"
 org-jetbrains-kotlin-android = "1.9.20"
 core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
-lifecycle-runtime-ktx = "2.6.2"
-compose-viewmodel = "2.6.2"
+lifecycle-runtime-ktx = "2.7.0"
+compose-viewmodel = "2.7.0"
 activity-compose = "1.8.2"
-compose-bom = "2023.10.01"
-compose-runtime = "1.5.4"
+compose-bom = "2024.01.00"
+compose-runtime = "1.6.0"
 constraintLayout = "1.0.1"
 hilt = "2.48.1"
 hiltNavigation = "1.1.0"
@@ -22,9 +22,10 @@ material = "1.11.0"
 kotlinCompilerExtVersion = "1.5.4"
 compileSdk = "34"
 minSdk = "24"
-uiTooling = "1.5.4"
-firebase = "32.7.0"
+uiTooling = "1.6.0"
+firebase = "32.7.1"
 firebase-plugin = "4.4.0"
+secureSharedPref = "1.1.0-alpha06"
 
 [libraries]
 ## Kotlin
@@ -53,6 +54,7 @@ constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayo
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+secureSharedPref = { group = "androidx.security", name = "security-crypto", version.ref = "secureSharedPref"}
 
 ## Other
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }

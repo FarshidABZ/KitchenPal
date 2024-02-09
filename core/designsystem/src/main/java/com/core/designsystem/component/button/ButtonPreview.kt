@@ -32,15 +32,15 @@ fun AllButtonPreview() {
                     Row {
                         FilledButton(text = "Label") {}
                         Spacer(modifier = Modifier.width(8.dp))
-                        FilledButton(text = "Label ", leadingIcon = R.drawable.ic_plus_small) {}
+                        FilledButton(text = "Label ", leadingIcon = R.drawable.ic_add) {}
                     }
                     Row {
-                        FilledButton(text = "Label ", trailingIcon = R.drawable.ic_plus_small) {}
+                        FilledButton(text = "Label ", trailingIcon = R.drawable.ic_add) {}
                         Spacer(modifier = Modifier.width(8.dp))
                         FilledButton(
                             text = "Filled Button Disable",
                             isEnable = false,
-                            leadingIcon = R.drawable.ic_plus_small
+                            leadingIcon = R.drawable.ic_add
                         ) {}
                         Spacer(modifier = Modifier.width(8.dp))
                     }
@@ -53,15 +53,15 @@ fun AllButtonPreview() {
                     Row {
                         OutlineButton(text = "Label") {}
                         Spacer(modifier = Modifier.width(8.dp))
-                        OutlineButton(text = "Label ", leadingIcon = R.drawable.ic_plus_small) {}
+                        OutlineButton(text = "Label ", leadingIcon = R.drawable.ic_add) {}
                     }
                     Row {
-                        OutlineButton(text = "Label ", trailingIcon = R.drawable.ic_plus_small) {}
+                        OutlineButton(text = "Label ", trailingIcon = R.drawable.ic_add) {}
                         Spacer(modifier = Modifier.width(8.dp))
                         OutlineButton(
                             text = "Filled Button Disable",
                             isEnable = false,
-                            leadingIcon = R.drawable.ic_plus_small
+                            leadingIcon = R.drawable.ic_add
                         ) {}
                     }
                 }
@@ -72,15 +72,15 @@ fun AllButtonPreview() {
                     Row {
                         TextButton(text = "Filled Button") {}
                         Spacer(modifier = Modifier.width(8.dp))
-                        TextButton(text = "Label ", leadingIcon = R.drawable.ic_plus_small) {}
+                        TextButton(text = "Label ", leadingIcon = R.drawable.ic_add) {}
                     }
                     Row {
-                        TextButton(text = "Label ", trailingIcon = R.drawable.ic_plus_small) {}
+                        TextButton(text = "Label ", trailingIcon = R.drawable.ic_add) {}
                         Spacer(modifier = Modifier.width(8.dp))
                         TextButton(
                             text = "Filled Button Disable",
                             isEnable = false,
-                            leadingIcon = R.drawable.ic_plus_small
+                            leadingIcon = R.drawable.ic_add
                         ) {}
                         Spacer(modifier = Modifier.width(8.dp))
                     }
@@ -92,10 +92,10 @@ fun AllButtonPreview() {
                     Row {
                         ElevatedButton(text = "Label") {}
                         Spacer(modifier = Modifier.width(8.dp))
-                        ElevatedButton(text = "Label ", leadingIcon = R.drawable.ic_plus_small) {}
+                        ElevatedButton(text = "Label ", leadingIcon = R.drawable.ic_add) {}
                     }
                     Row {
-                        ElevatedButton(text = "Label ", trailingIcon = R.drawable.ic_plus_small) {}
+                        ElevatedButton(text = "Label ", trailingIcon = R.drawable.ic_add) {}
                         Spacer(modifier = Modifier.width(8.dp))
                         ElevatedButton(text = "Filled Button Disable", isEnable = false) {}
                         Spacer(modifier = Modifier.width(8.dp))
@@ -108,14 +108,14 @@ fun AllButtonPreview() {
                     Row {
                         TonalButton(text = "Label") {}
                         Spacer(modifier = Modifier.width(8.dp))
-                        TonalButton(text = "Label ", leadingIcon = R.drawable.ic_plus_small) {}
+                        TonalButton(text = "Label ", leadingIcon = R.drawable.ic_add) {}
                     }
                     Row {
-                        TonalButton(text = "Label ", trailingIcon = R.drawable.ic_plus_small) {}
+                        TonalButton(text = "Label ", trailingIcon = R.drawable.ic_add) {}
                         Spacer(modifier = Modifier.width(8.dp))
                         TonalButton(
                             text = "Label ",
-                            leadingIcon = R.drawable.ic_plus_small,
+                            leadingIcon = R.drawable.ic_add,
                             isEnable = false
                         ) {}
                         Spacer(modifier = Modifier.width(8.dp))

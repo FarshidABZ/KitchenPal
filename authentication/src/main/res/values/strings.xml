@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_back_pal">Welcome Back Pal!</string>
+    <string name="login_to_your_account">Login to your account.</string>
+    <string name="forgot_your_password">Forgot Your password?</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with">or Sign In with</string>
+</resources>

@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -60,7 +61,7 @@ fun OutlineButton(
             if (leadingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(end = Dimens.spaceSmall)
+                        .offset(Dimens.spaceSmall * -1)
                         .size(18.dp),
                     painter = painterResource(id = leadingIcon),
                     contentDescription = "leading icon",
@@ -77,7 +78,7 @@ fun OutlineButton(
             if (trailingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(start = Dimens.spaceSmall)
+                        .offset(Dimens.spaceSmall)
                         .size(18.dp),
                     painter = painterResource(id = trailingIcon),
                     contentDescription = "leading icon",
@@ -105,11 +106,14 @@ fun PreviewOutlineButton() {
             OutlineButton(text = "Outline Button", isEnable = false) {
             }
 
-            OutlineButton(text = "label ", trailingIcon = R.drawable.ic_plus_small) {
+            OutlineButton(text = "label ", trailingIcon = R.drawable.ic_add) {
+            }
+
+            OutlineButton(text = "label ", leadingIcon = R.drawable.ic_add) {
             }
             OutlineButton(
                 text = "label ",
-                trailingIcon = R.drawable.ic_plus_small,
+                trailingIcon = R.drawable.ic_add,
                 isEnable = false
             ) {
             }

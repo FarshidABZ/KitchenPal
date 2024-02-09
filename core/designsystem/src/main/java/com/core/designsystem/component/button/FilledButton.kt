@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -59,7 +60,7 @@ fun FilledButton(
             if (leadingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(end = Dimens.spaceSmall)
+                        .offset(Dimens.spaceSmall * -1)
                         .size(18.dp),
                     painter = painterResource(id = leadingIcon),
                     colorFilter = ColorFilter.tint(if (isEnable) contentColor else disabledContentColor),
@@ -77,7 +78,7 @@ fun FilledButton(
             if (trailingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(start = Dimens.spaceSmall)
+                        .offset(Dimens.spaceSmall)
                         .size(18.dp),
                     painter = painterResource(id = trailingIcon),
                     contentDescription = "leading icon",
@@ -105,17 +106,17 @@ fun PreviewFilledButton() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            FilledButton(text = "label ", leadingIcon = R.drawable.ic_plus_small) {
+            FilledButton(text = "label ", leadingIcon = R.drawable.ic_add) {
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            FilledButton(text = "label ", trailingIcon = R.drawable.ic_plus_small) {
+            FilledButton(text = "label ", trailingIcon = R.drawable.ic_add) {
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            FilledButton(text = "label ", leadingIcon = R.drawable.ic_plus_small) {
+            FilledButton(text = "label ", leadingIcon = R.drawable.ic_add) {
             }
 
             Spacer(modifier = Modifier.height(16.dp))

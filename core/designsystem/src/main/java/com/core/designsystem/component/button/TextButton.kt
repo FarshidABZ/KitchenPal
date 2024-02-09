@@ -56,7 +56,6 @@ fun TextButton(
             if (leadingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(end = Dimens.spaceSmall)
                         .size(18.dp),
                     painter = painterResource(id = leadingIcon),
                     colorFilter = ColorFilter.tint(color),
@@ -64,12 +63,16 @@ fun TextButton(
                 )
             }
 
-            Text(text = text, style = MaterialTheme.typography.labelLarge, color = color)
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelLarge,
+                color = color,
+                modifier = Modifier.padding(horizontal = Dimens.spaceSmall)
+            )
 
             if (trailingIcon != null) {
                 Image(
                     modifier = Modifier
-                        .padding(start = Dimens.spaceSmall)
                         .size(18.dp),
                     painter = painterResource(id = trailingIcon),
                     colorFilter = ColorFilter.tint(color),
@@ -94,7 +97,7 @@ fun PreviewTextButton() {
             TextButton(text = "Text Button") {
             }
 
-            TextButton(text = "Text Button", leadingIcon = R.drawable.ic_plus_small) {
+            TextButton(text = "Text Button", leadingIcon = R.drawable.ic_add) {
             }
 
             TextButton(text = "Text Button", isEnable = false) {
@@ -102,7 +105,14 @@ fun PreviewTextButton() {
 
             TextButton(
                 text = "Text Button",
-                leadingIcon = R.drawable.ic_plus_small,
+                leadingIcon = R.drawable.ic_add,
+                isEnable = false
+            ) {
+            }
+
+            TextButton(
+                text = "Text Button",
+                trailingIcon = R.drawable.ic_add,
                 isEnable = false
             ) {
             }

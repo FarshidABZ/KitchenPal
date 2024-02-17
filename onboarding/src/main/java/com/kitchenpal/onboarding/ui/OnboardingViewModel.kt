@@ -80,8 +80,8 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
     private fun getNavigationIconId(): Int {
         return when (currentPageIndex) {
             0 -> 0
-            1 -> com.core.designsystem.R.drawable.ic_arrow_left
-            else -> com.core.designsystem.R.drawable.ic_arrow_left
+            1 -> com.kitchenpal.core.designsystem.R.drawable.ic_arrow_left
+            else -> com.kitchenpal.core.designsystem.R.drawable.ic_arrow_left
         }
     }
 

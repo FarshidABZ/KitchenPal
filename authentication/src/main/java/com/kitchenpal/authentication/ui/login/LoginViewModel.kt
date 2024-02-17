@@ -1,46 +1,52 @@
 package com.kitchenpal.authentication.ui.login
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kitchenpal.core.common.base.mvibase.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor() : ViewModel() {
+@HiltViewModel
+internal class LoginViewModel @Inject constructor() : BaseViewModel<LoginEvent, ViewState, SingleEvent>() {
+    private var _viewState = MutableStateFlow(ViewState())
+    override val viewState = _viewState.asStateFlow()
 
-    private var emailAddress: String = ""
-    private var password: String = ""
-
-    private var _loginState =
-        MutableStateFlow(LoginState<String>())
-    val loginState = _loginState.asStateFlow()
-
-    fun handleIntent(intent: LoginEvent) {
+    override fun processIntent(intent: LoginEvent) {
         when (intent) {
             is LoginEvent.EmailAddressChanged -> {
-                emailAddress = intent.emailAddress
-                _loginState.value = _loginState.value.copy(emailAddress = emailAddress)
+                _viewState.update {
+                    it.copy(emailAddress = intent.emailAddress)
+                }
             }
             is LoginEvent.PasswordChanged -> {
-                password = intent.password
-                _loginState.value = _loginState.value.copy(password = password)
+                _viewState.update {
+                    it.copy(password = intent.password)
+                }
             }
             is LoginEvent.SignInClicked -> {
-                _loginState.value = _loginState.value.copy(isLoading = true)
                 signIn(intent.signInWithGmail)
             }
         }
     }
 
     private fun signIn(signInWithGmail: Boolean = false) {
-        //do something in response set login state
-        _loginState.value = _loginState.value.copy(isLoading = true)
+        if(signInWithGmail) {
+            Unit
+        }
+
+        _viewState.update {
+            it.copy(loading = true)
+        }
         viewModelScope.launch {
             delay(3000)
-            _loginState.value =
-                _loginState.value.copy(isLoading = false, success = "Loading success")
+            _viewState.update {
+                it.copy(loading = false)
+            }
+            sendSingleEvent(SingleEvent.LoginSucceed)
         }
     }
 }

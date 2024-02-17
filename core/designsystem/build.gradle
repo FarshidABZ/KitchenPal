@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.core.designsystem'
+    namespace 'com.kitchenpal.core.designsystem'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {

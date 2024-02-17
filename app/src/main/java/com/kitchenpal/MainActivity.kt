@@ -13,9 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.core.designsystem.theme.KitchenPalTheme
-import com.kitchenpal.authentication.navigation.authenticationScreen
-import com.kitchenpal.navigation.NavigationConstant
+import com.kitchenpal.authentication.navigation.authenticationGraph
+import com.kitchenpal.authentication.navigation.navigateAuth
+import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
+import com.kitchenpal.onboarding.navigation.ONBOARDING_ROUTE
 import com.kitchenpal.onboarding.navigation.onboardingScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,12 +36,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun KitchenPalNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    startDestination: String = NavigationConstant.onboardingRoute,
+    startDestination: String = ONBOARDING_ROUTE,
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
-        onboardingScreen(navController)
-        authenticationScreen(navController)
+        onboardingScreen(navController::navigateAuth)
+        authenticationGraph(
+            navController = navController,
+            onLoginDone = {},
+            onSignupDone = {},
+            onBackClick = navController::popBackStack
+        )
     }
 }
 

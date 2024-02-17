@@ -1,6 +1,7 @@
 package com.kitchenpal.authentication.ui.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,9 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,7 +28,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,43 +43,53 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.core.designsystem.component.button.FilledButton
-import com.core.designsystem.component.button.OutlineTextIconButton
-import com.core.designsystem.component.divider.TextDivider
-import com.core.designsystem.component.inputfield.EmailTextField
-import com.core.designsystem.component.inputfield.PasswordTextField
-import com.core.designsystem.theme.Dimens
-import com.core.designsystem.theme.KitchenPalTheme
-import com.core.designsystem.theme.colorOnSurfaceVariant2
-import com.example.common.utils.isNotNullOrEmpty
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kitchenpal.authentication.R
+import com.kitchenpal.core.designsystem.component.button.FilledButton
+import com.kitchenpal.core.designsystem.component.button.OutlineTextIconButton
+import com.kitchenpal.core.designsystem.component.divider.TextDivider
+import com.kitchenpal.core.designsystem.component.inputfield.EmailTextField
+import com.kitchenpal.core.designsystem.component.inputfield.PasswordTextField
+import com.kitchenpal.core.designsystem.theme.Dimens
+import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
+import com.kitchenpal.core.designsystem.theme.colorOnSurfaceVariant2
+import com.kitchenpal.core.ui.collectInLaunchedEffectWithLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
 @Composable
-fun AuthenticationRoute(
-    onAuthenticationDone: () -> Unit,
-    onBackPressed: () -> Unit,
+internal fun LoginRoute(
+    onLoginDone: () -> Unit,
+    onSignUpClicked: () -> Unit,
+    onBackClick: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.loginState.collectAsState()
-    if (uiState.success.isNotNullOrEmpty()) {
-        onAuthenticationDone()
-    } else {
-        LoginScreen(
-            uiState = uiState,
-            onAction = viewModel::handleIntent,
-            onBackPressed
-        )
+    viewModel.singleEvent.collectInLaunchedEffectWithLifecycle { event ->
+        when (event) {
+            is SingleEvent.LoginSucceed -> {
+                onLoginDone()
+            }
+            is SingleEvent.LoginFailed -> {
+                // show error
+            }
+        }
     }
+
+    val uiState by viewModel.viewState.collectAsStateWithLifecycle()
+    LoginScreen(
+        uiState = uiState,
+        onAction = viewModel::processIntent,
+        onBackClick,
+        onSignUpClicked
+    )
 }
 
 @Composable
-fun LoginScreen(
-    uiState: LoginState<String>,
+private fun LoginScreen(
+    uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
-    onBackPressed: () -> Unit
+    onBackClick: () -> Unit,
+    onSignUpClicked: () -> Unit
 ) {
     val localCoroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -85,12 +97,13 @@ fun LoginScreen(
     KitchenPalTheme {
         Scaffold(
             snackbarHost = { SnackbarHost(snackbarHostState) },
-            topBar = { LoginTopBar(onBackPressed) },
+            topBar = { LoginTopBar(onBackClick) },
             content = { paddingValues ->
                 LoginContent(
                     paddingValues,
                     uiState,
                     onAction,
+                    onSignUpClicked,
                     snackbarHostState,
                     localCoroutineScope
                 )
@@ -101,14 +114,14 @@ fun LoginScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginTopBar(onBackPressed: () -> Unit) {
+fun LoginTopBar(onBackClick: () -> Unit) {
     CenterAlignedTopAppBar(
         title = {},
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(MaterialTheme.colorScheme.background),
         navigationIcon = {
-            IconButton(onClick = onBackPressed) {
+            IconButton(onClick = onBackClick) {
                 Icon(
-                    painter = painterResource(id = com.core.designsystem.R.drawable.ic_arrow_left),
+                    painter = painterResource(id = com.kitchenpal.core.designsystem.R.drawable.ic_arrow_left),
                     contentDescription = null
                 )
             }
@@ -118,15 +131,23 @@ fun LoginTopBar(onBackPressed: () -> Unit) {
 
 
 @Composable
-fun LoginContent(
+private fun LoginContent(
     paddingValues: PaddingValues,
-    uiState: LoginState<String>,
+    uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
+    onSignUpClicked: () -> Unit,
     snackbarHostState: SnackbarHostState,
     localCoroutineScope: CoroutineScope
 ) {
     BackgroundImage()
-    LoginForm(paddingValues, uiState, onAction, localCoroutineScope, snackbarHostState)
+    LoginForm(
+        paddingValues,
+        uiState,
+        onAction,
+        localCoroutineScope,
+        snackbarHostState,
+        onSignUpClicked
+    )
 }
 
 @Composable
@@ -138,7 +159,7 @@ private fun BackgroundImage() {
                 .fillMaxWidth()
                 .height(256.dp),
             contentScale = ContentScale.FillBounds,
-            painter = painterResource(id = com.core.designsystem.R.drawable.bottom_background_shape),
+            painter = painterResource(id = com.kitchenpal.core.designsystem.R.drawable.bottom_background_shape),
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.tertiary),
             alpha = 0.05f,
             contentDescription = ""
@@ -147,12 +168,13 @@ private fun BackgroundImage() {
 }
 
 @Composable
-fun LoginForm(
+private fun LoginForm(
     paddingValues: PaddingValues,
-    uiState: LoginState<String>,
+    uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
     localCoroutineScope: CoroutineScope,
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    onSignUpClicked: () -> Unit
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -171,8 +193,7 @@ fun LoginForm(
             divider,
             gmailButton,
             signUpButton,
-            progressBar,
-            bottomBackground) = createRefs()
+            progressBar) = createRefs()
 
         Text(
             modifier = Modifier.constrainAs(titleText) {
@@ -251,29 +272,30 @@ fun LoginForm(
                 end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
                 width = Dimension.fillToConstraints
             },
-            text = if (uiState.isLoading) "" else stringResource(id = R.string.sign_in)
+            text = if (uiState.loading) "" else stringResource(id = R.string.sign_in)
         ) {
             onAction(LoginEvent.SignInClicked(false))
         }
 
-        if (uiState.isLoading) {
+        if (uiState.loading) {
             LaunchedEffect(Unit) {
                 localCoroutineScope.launch {
                     snackbarHostState.showSnackbar("loading")
                 }
             }
 
-            /*CircularProgressIndicator(
-                modifier = Modifier.constrainAs(progressBar) {
-                    top.linkTo(signInButton.top)
-                    bottom.linkTo(signInButton.bottom)
-                    start.linkTo(signInButton.start)
-                    end.linkTo(signInButton.end)
-                },
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .size(24.dp)
+                    .constrainAs(progressBar) {
+                        centerTo(signInButton)
+                    },
                 color = MaterialTheme.colorScheme.onPrimary,
-                trackColor = MaterialTheme.colorScheme.onSurfaceVariant
-            )*/
+                trackColor = MaterialTheme.colorScheme.primary,
+                strokeWidth = 2.dp,
+            )
         }
+
         TextDivider(
             text = stringResource(R.string.sign_in_with),
             modifier = Modifier.constrainAs(divider) {
@@ -291,16 +313,18 @@ fun LoginForm(
                 width = Dimension.fillToConstraints
             },
             text = stringResource(id = R.string.sign_in),
-            leadingIcon = com.core.designsystem.R.drawable.ic_google
+            leadingIcon = com.kitchenpal.core.designsystem.R.drawable.ic_google
         ) {
         }
 
-        Row(modifier = Modifier.constrainAs(signUpButton) {
-            top.linkTo(gmailButton.bottom, margin = Dimens.spaceXXXXLarge)
-            start.linkTo(parent.start, margin = Dimens.spaceXXXLarge)
-            end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
-            width = Dimension.fillToConstraints
-        }, horizontalArrangement = Arrangement.Center) {
+        Row(modifier = Modifier
+            .constrainAs(signUpButton) {
+                top.linkTo(gmailButton.bottom, margin = Dimens.spaceXXXXLarge)
+                start.linkTo(parent.start, margin = Dimens.spaceXXXLarge)
+                end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
+                width = Dimension.fillToConstraints
+            }
+            .clickable { onSignUpClicked() }, horizontalArrangement = Arrangement.Center) {
             Text(
                 text = "Don’t have an account?",
                 style = MaterialTheme.typography.bodySmall,
@@ -326,6 +350,6 @@ fun LoginForm(
 @Composable
 private fun Login() {
     KitchenPalTheme {
-        LoginScreen(LoginState(false), {}, {})
+        LoginScreen(ViewState(), {}, {}, {})
     }
 }

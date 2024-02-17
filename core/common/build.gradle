@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.core.common'
+    namespace 'com.kitchenpal.core.common'
 
     compileSdk libs.versions.compileSdk.get().toInteger()
 
@@ -41,6 +41,8 @@ dependencies {
     implementation libs.secureSharedPref
     implementation libs.androidHilt
     kapt libs.hilt.compiler
+
+    implementation libs.compose.viewmodel
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

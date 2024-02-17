@@ -35,11 +35,11 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
-import com.core.designsystem.component.ListIndicator
-import com.core.designsystem.component.button.FilledButton
-import com.core.designsystem.component.button.OutlineButton
-import com.core.designsystem.theme.Dimens
-import com.core.designsystem.theme.KitchenPalTheme
+import com.kitchenpal.core.designsystem.component.ListIndicator
+import com.kitchenpal.core.designsystem.component.button.FilledButton
+import com.kitchenpal.core.designsystem.component.button.OutlineButton
+import com.kitchenpal.core.designsystem.theme.Dimens
+import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
 import com.kitchenpal.onboarding.R
 import kotlinx.coroutines.launch
 import kotlin.math.min
@@ -238,7 +238,7 @@ private fun Onboarding() {
             R.string.onboarding_title_1,
             R.string.onboarding_message_1,
             R.drawable.onboarding_1,
-            com.core.designsystem.R.drawable.ic_arrow_left,
+            com.kitchenpal.core.designsystem.R.drawable.ic_arrow_left,
             R.string.onboarding_navigation_action_text
         )
 

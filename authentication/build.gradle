@@ -41,9 +41,10 @@ android {
 dependencies {
     implementation project(':core:common')
     implementation project(':core:designsystem')
-    implementation project(':core:navigation')
+    implementation project(':core:ui')
 
     implementation libs.compose.viewmodel
+    implementation libs.compose.lifecycle
 
     implementation libs.androidHilt
     implementation libs.hilt.navigation

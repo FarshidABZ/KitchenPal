@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "KitchenPal"
 include ':app'
 include ':core:designsystem'
-include ':onboarding'
 include ':core:common'
-include ':core:navigation'
+include ':core:ui'
+include ':onboarding'
 include ':authentication'

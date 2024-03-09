@@ -47,25 +47,35 @@ import com.kitchenpal.preferences.R
 @Composable
 internal fun PreferencesRoute(
     preferencesDone: () -> Unit,
+    skipClicked: () -> Unit,
+    seeAllClicked: (String) -> Unit,
     viewModel: PreferencesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.viewState.collectAsStateWithLifecycle()
-    PreferencesScreen(uiState, viewModel::processIntent, preferencesDone)
+    PreferencesScreen(
+        uiState,
+        viewModel::processIntent,
+        preferencesDone,
+        skipClicked,
+        seeAllClicked
+    )
 }
 
 @Composable
 private fun PreferencesScreen(
     viewState: ViewState,
     onAction: (PreferencesEvent) -> Unit,
-    preferencesDone: () -> Unit
+    preferencesDone: () -> Unit,
+    skipClicked: () -> Unit,
+    seeAllClicked: (String) -> Unit
 ) {
     KitchenPalTheme {
         Scaffold(
             topBar = {
-                PreferencesTopBar(viewState.progressValue, preferencesDone)
+                PreferencesTopBar(viewState.progressValue, skipClicked)
             },
             content = { paddingValues ->
-                PreferencesContent(paddingValues, viewState, onAction)
+                PreferencesContent(paddingValues, viewState, onAction, seeAllClicked)
             })
     }
 }
@@ -74,7 +84,8 @@ private fun PreferencesScreen(
 private fun PreferencesContent(
     paddingValues: PaddingValues,
     viewState: ViewState,
-    onAction: (PreferencesEvent) -> Unit
+    onAction: (PreferencesEvent) -> Unit,
+    seeAllClicked: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -82,7 +93,7 @@ private fun PreferencesContent(
             .fillMaxSize()
     ) {
         viewState.sections.forEachIndexed { index, section ->
-            PreferencesSection(index, section, onAction)
+            PreferencesSection(index, section, onAction, seeAllClicked)
             if (index < viewState.sections.size - 1) {
                 HorizontalDivider(
                     modifier = Modifier.padding(
@@ -160,7 +171,8 @@ fun PreferencesTopBar(progress: Float, onActionClicked: () -> Unit) {
 fun PreferencesSection(
     sectionIndex: Int,
     section: PreferencesUiModel,
-    onAction: (PreferencesEvent) -> Unit
+    onAction: (PreferencesEvent) -> Unit,
+    seeAllClicked: (String) -> Unit
 ) {
     Column(modifier = Modifier.padding(horizontal = Dimens.spaceXLarge)) {
         ConstraintLayout(modifier = Modifier.fillMaxWidth()) {
@@ -195,7 +207,7 @@ fun PreferencesSection(
                             start = Dimens.spaceLarge
                         )
                         .clickable {
-                            onAction(PreferencesEvent.SeeAllClicked(it.id))
+                            seeAllClicked(it.id)
                         },
                     text = it.title,
                     style = MaterialTheme.typography.labelLarge,
@@ -264,6 +276,6 @@ fun PreferenceChip(preference: Chip, onClick: (String) -> Unit) {
 @Composable
 fun PreferencesScreenPreview() {
     KitchenPalTheme {
-        PreferencesScreen(ViewState(), {}, {})
+        PreferencesScreen(ViewState(), {}, {}, {}, {})
     }
 }

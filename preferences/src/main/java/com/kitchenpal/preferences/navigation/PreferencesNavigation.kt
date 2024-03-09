@@ -21,6 +21,6 @@ fun NavController.navigateToPreferences(clearTop: Boolean = false) {
 
 fun NavGraphBuilder.preferencesScreen(preferencesDone: () -> Unit) {
     composable(PREFERENCES_ROUTE) {
-        PreferencesRoute(preferencesDone)
+        PreferencesRoute(preferencesDone, {}, {})
     }
 }

@@ -6,7 +6,6 @@ import com.kitchenpal.core.common.base.mvibase.MviViewState
 
 sealed interface PreferencesEvent : MviIntent {
     data class SelectChip(val chipId: String, val sectionIndex: Int) : PreferencesEvent
-    data class SeeAllClicked(val id: String) : PreferencesEvent
     data object ActionButtonClicked : PreferencesEvent
 }
 

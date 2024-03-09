@@ -18,6 +18,8 @@ import com.kitchenpal.authentication.navigation.navigateAuth
 import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
 import com.kitchenpal.onboarding.navigation.ONBOARDING_ROUTE
 import com.kitchenpal.onboarding.navigation.onboardingScreen
+import com.kitchenpal.preferences.navigation.PREFERENCES_ROUTE
+import com.kitchenpal.preferences.navigation.preferencesScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun KitchenPalNavHost(
     navController: NavHostController,
-    startDestination: String = ONBOARDING_ROUTE,
+    startDestination: String = PREFERENCES_ROUTE,
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         onboardingScreen(navController::navigateAuth)
@@ -46,6 +48,9 @@ fun KitchenPalNavHost(
             onSignupDone = {},
             onBackClick = navController::popBackStack
         )
+        preferencesScreen {
+
+        }
     }
 }
 

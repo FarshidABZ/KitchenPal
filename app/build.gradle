@@ -47,6 +47,7 @@ dependencies {
     implementation project(':core:designsystem')
     implementation project(':onboarding')
     implementation project(':authentication')
+    implementation project(':preferences')
 
     implementation libs.core.ktx
     implementation libs.lifecycle.runtime.ktx

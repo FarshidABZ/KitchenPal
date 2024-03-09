@@ -28,7 +28,7 @@ internal val KitchenPalTypography = Typography(
         platformStyle = PlatformTextStyle(includeFontPadding = false)
     ),
     displayMedium = TextStyle(
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 45.sp,
         lineHeight = 52.sp,
         fontFamily = poppinsFamily,
@@ -68,7 +68,7 @@ internal val KitchenPalTypography = Typography(
         platformStyle = PlatformTextStyle(includeFontPadding = false)
     ),
     titleLarge = TextStyle(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Normal,
         fontSize = 22.sp,
         lineHeight = 28.sp,
         fontFamily = poppinsFamily,
@@ -76,8 +76,8 @@ internal val KitchenPalTypography = Typography(
         platformStyle = PlatformTextStyle(includeFontPadding = false)
     ),
     titleMedium = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 18.sp,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
         lineHeight = 24.sp,
         fontFamily = poppinsFamily,
         letterSpacing = 0.1.sp,
@@ -133,10 +133,10 @@ internal val KitchenPalTypography = Typography(
     ),
     labelSmall = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 10.sp,
+        fontSize = 11.sp,
         lineHeight = 16.sp,
         fontFamily = poppinsFamily,
-        letterSpacing = 0.sp,
+        letterSpacing = 0.5.sp,
         platformStyle = PlatformTextStyle(includeFontPadding = false)
     ),
 )

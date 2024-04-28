@@ -43,6 +43,8 @@ dependencies {
     implementation libs.compose.viewmodel
     implementation libs.compose.lifecycle
 
+    implementation libs.androidx.metrics
+
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core

@@ -14,4 +14,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_message">Create your Kitchen Pal account.</string>
 
+    <!--  Reset Password  -->
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_description">Let\'s get you back in! Share your email for a password reset.</string>
+    <string name="remember_your_password">Remember your password?</string>
+
 </resources>

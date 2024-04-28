@@ -61,6 +61,7 @@ import kotlinx.coroutines.launch
 internal fun LoginRoute(
     onLoginDone: () -> Unit,
     onSignUpClicked: () -> Unit,
+    onForgetPasswordClicked: () -> Unit,
     onBackClick: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
@@ -69,6 +70,7 @@ internal fun LoginRoute(
             is SingleEvent.LoginSucceed -> {
                 onLoginDone()
             }
+
             is SingleEvent.LoginFailed -> {
                 // show error
             }
@@ -79,6 +81,7 @@ internal fun LoginRoute(
     LoginScreen(
         uiState = uiState,
         onAction = viewModel::processIntent,
+        onForgetPasswordClicked,
         onBackClick,
         onSignUpClicked
     )
@@ -88,6 +91,7 @@ internal fun LoginRoute(
 private fun LoginScreen(
     uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
+    onForgetPasswordClicked: () -> Unit,
     onBackClick: () -> Unit,
     onSignUpClicked: () -> Unit
 ) {
@@ -104,6 +108,7 @@ private fun LoginScreen(
                     uiState,
                     onAction,
                     onSignUpClicked,
+                    onForgetPasswordClicked,
                     snackbarHostState,
                     localCoroutineScope
                 )
@@ -136,6 +141,7 @@ private fun LoginContent(
     uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
     onSignUpClicked: () -> Unit,
+    onForgetPasswordClicked: () -> Unit,
     snackbarHostState: SnackbarHostState,
     localCoroutineScope: CoroutineScope
 ) {
@@ -144,6 +150,7 @@ private fun LoginContent(
         paddingValues,
         uiState,
         onAction,
+        onForgetPasswordClicked,
         localCoroutineScope,
         snackbarHostState,
         onSignUpClicked
@@ -172,6 +179,7 @@ private fun LoginForm(
     paddingValues: PaddingValues,
     uiState: ViewState,
     onAction: (LoginEvent) -> Unit,
+    onForgetPasswordClicked: () -> Unit,
     localCoroutineScope: CoroutineScope,
     snackbarHostState: SnackbarHostState,
     onSignUpClicked: () -> Unit
@@ -256,10 +264,14 @@ private fun LoginForm(
         }
 
         Text(
-            modifier = Modifier.constrainAs(forgetPassword) {
-                top.linkTo(passwordField.bottom)
-                end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
-            },
+            modifier = Modifier
+                .constrainAs(forgetPassword) {
+                    top.linkTo(passwordField.bottom)
+                    end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
+                }
+                .clickable {
+                    onForgetPasswordClicked()
+                },
             text = stringResource(R.string.forgot_your_password),
             color = colorOnSurfaceVariant2,
             style = MaterialTheme.typography.bodySmall
@@ -324,7 +336,8 @@ private fun LoginForm(
                 end.linkTo(parent.end, margin = Dimens.spaceXXXLarge)
                 width = Dimension.fillToConstraints
             }
-            .clickable { onSignUpClicked() }, horizontalArrangement = Arrangement.Center) {
+            .clickable { onSignUpClicked() }, horizontalArrangement = Arrangement.Center
+        ) {
             Text(
                 text = "Don’t have an account?",
                 style = MaterialTheme.typography.bodySmall,
@@ -350,6 +363,6 @@ private fun LoginForm(
 @Composable
 private fun Login() {
     KitchenPalTheme {
-        LoginScreen(ViewState(), {}, {}, {})
+        LoginScreen(ViewState(), {}, {}, {}, {})
     }
 }

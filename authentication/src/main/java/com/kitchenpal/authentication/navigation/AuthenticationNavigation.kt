@@ -4,18 +4,19 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.kitchenpal.authentication.ui.forgetpassword.ForgetPasswordRoute
 import com.kitchenpal.authentication.ui.login.LoginRoute
 import com.kitchenpal.authentication.ui.signup.SignupRoute
 
-const val AUTH = "auth"
+const val AUTHENTICATION_ROUTE = "authentication"
 const val LOGIN_ROUTE = "login_route"
 const val SIGNUP_ROUTE = "signup_route"
 const val FORGET_PASSWORD_ROUTE = "forget_password_route"
 
 fun NavController.navigateAuth() {
-    navigate(AUTH) {
+    navigate(AUTHENTICATION_ROUTE) {
         launchSingleTop = true
-        popUpTo(AUTH) {
+        popUpTo(AUTHENTICATION_ROUTE) {
             inclusive = true
         }
     }
@@ -24,7 +25,7 @@ fun NavController.navigateAuth() {
 private fun NavController.navigateToLogin() {
     navigate(LOGIN_ROUTE) {
         launchSingleTop = true
-        popUpTo(AUTH) {
+        popUpTo(AUTHENTICATION_ROUTE) {
             inclusive = true
         }
     }
@@ -36,18 +37,26 @@ private fun NavController.navigateToSignup() {
     }
 }
 
+private fun NavController.navigateToForgetPassword() {
+    navigate(FORGET_PASSWORD_ROUTE) {
+        launchSingleTop = true
+    }
+}
+
 fun NavGraphBuilder.authenticationGraph(
     navController: NavController,
     onLoginDone: () -> Unit,
     onSignupDone: () -> Unit,
+    onPasswordReset: () -> Unit,
     onBackClick: () -> Unit,
 ) {
-    navigation(startDestination = LOGIN_ROUTE, route = AUTH) {
+    navigation(startDestination = LOGIN_ROUTE, route = AUTHENTICATION_ROUTE) {
         composable(route = LOGIN_ROUTE) {
             LoginRoute(
                 onLoginDone = onLoginDone,
                 onSignUpClicked = navController::navigateToSignup,
                 onBackClick = onBackClick,
+                onForgetPasswordClicked = navController::navigateToForgetPassword
             )
         }
 
@@ -60,10 +69,10 @@ fun NavGraphBuilder.authenticationGraph(
         }
 
         composable(route = FORGET_PASSWORD_ROUTE) {
-            SignupRoute(
-                onSignupDone = onSignupDone,
+            ForgetPasswordRoute(
                 onLoginClicked = navController::navigateToLogin,
-                onBackPressed = onBackClick,
+                onBackClicked = onBackClick,
+                onResetPasswordDone = onPasswordReset
             )
         }
     }

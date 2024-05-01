@@ -130,7 +130,12 @@ fun KitchenPalBottomBar(
     NavigationBar(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(topStart = Radius.spaceLarge, topEnd = Radius.spaceLarge))
+            .clip(
+                RoundedCornerShape(
+                    topStart = Radius.spaceXXXXLarge,
+                    topEnd = Radius.spaceXXXXLarge
+                )
+            )
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)

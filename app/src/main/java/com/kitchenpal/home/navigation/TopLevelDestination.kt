@@ -11,25 +11,25 @@ enum class TopLevelDestination(
     HOME(
         route = HOME_ROUTE,
         title = "Home",
-        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_home,
-        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_home_filled,
+        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_home_filled,
+        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_home,
     ),
     CHAT(
         route = CHAT_ROUTE,
         title = "Chat",
-        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_message_5,
-        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_message_filled,
+        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_message_filled,
+        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_message_5,
     ),
     FAVORITE(
         route = FAVORITE_ROUTE,
         title = "Favorites",
-        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_bookmark,
-        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_bookmark_filled,
+        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_bookmark_filled,
+        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_bookmark,
     ),
     PROFILE(
         route = PROFILE_ROUTE,
         title = "Profile",
-        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_profile,
-        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_profile_filled,
+        selectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_profile_filled,
+        unselectedIcon = com.kitchenpal.core.designsystem.R.drawable.ic_profile,
     )
 }

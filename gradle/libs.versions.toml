@@ -27,7 +27,8 @@ firebase = "32.8.1"
 firebase-plugin = "4.4.1"
 secureSharedPref = "1.1.0-alpha06"
 lazyFlow = "1.1.0"
-androidxMetrics = "1.0.0-alpha04"
+androidxMetrics = "1.0.0-beta01"
+gson = "2.10.1"
 
 [libraries]
 ## Kotlin
@@ -59,7 +60,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 secureSharedPref = { group = "androidx.security", name = "security-crypto", version.ref = "secureSharedPref" }
 androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
-
+gson = {group = "com.google.code.gson", name = "gson", version.ref = "gson"}
 ## Other
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
@@ -75,6 +76,7 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }

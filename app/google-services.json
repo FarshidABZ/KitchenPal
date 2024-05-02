@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184957788892",
+    "project_id": "kitchenpal-adc26",
+    "storage_bucket": "kitchenpal-adc26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184957788892:android:bccbc0f147b67c05f5ca19",
+        "android_client_info": {
+          "package_name": "com.kitchenpal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChLa5kvZfA626hTZ76Cy_NIU7GXGPdBCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

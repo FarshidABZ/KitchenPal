@@ -1,0 +1,58 @@
+plugins {
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.kitchenpal.core.designsystem'
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        minSdk libs.versions.minSdk.get().toInteger()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtVersion.get()
+    }
+}
+
+dependencies {
+    project(":core:common")
+
+    api platform(libs.compose.bom)
+    api libs.material3
+    api libs.compose.ui
+    api libs.compose.runtime
+    api libs.ui.tooling.preview
+    api libs.constraintLayout
+    debugImplementation libs.androidx.ui.tooling
+    debugImplementation libs.ui.test.manifest
+
+    api libs.appcompat
+    api libs.material
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.espresso.core
+}

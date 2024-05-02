@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="next">Next</string>
+    <string name="lets_go">Let’s Go!</string>
+    <string name="onboarding_title_1">Welcome to Kitchen Pal</string>
+    <string name="onboarding_title_2">Ingredient Alchemy</string>
+    <string name="onboarding_title_3">Your Culinary Profile</string>
+    <string name="onboarding_message_1">Hey there, Glad you\'re here!\nTime to spice up your cooking game with Kitchen Pal. Ready for some tasty adventures?</string>
+    <string name="onboarding_message_2">Got ingredients? Sweet!\nTell us what you\'ve got, and we\'ll whip up a culinary vibe that matches your taste.</string>
+    <string name="onboarding_message_3">Ready for a visual feast? Explore mouthwatering dishes made just for you. Excited? Time to share your vibes, preferences. Your Kitchen Pal is ready to roll with your style!</string>
+    <string name="onboarding_navigation_action_text">Skip</string>
+</resources>

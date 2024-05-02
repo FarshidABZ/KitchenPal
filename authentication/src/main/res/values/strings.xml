@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Login  -->
+    <string name="welcome_back_pal">Welcome Back Pal!</string>
+    <string name="login_to_your_account">Login to your account.</string>
+    <string name="forgot_your_password">Forgot Your password?</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with">or Sign In with</string>
+
+    <!--  Signup  -->
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_message">Create your Kitchen Pal account.</string>
+
+    <!--  Reset Password  -->
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_description">Let\'s get you back in! Share your email for a password reset.</string>
+    <string name="remember_your_password">Remember your password?</string>
+
+</resources>

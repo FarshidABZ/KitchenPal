@@ -1,0 +1,92 @@
+[versions]
+com-android-application = "8.2.2"
+kotlin-version = "1.9.22"
+core-ktx = "1.13.0"
+junit = "4.13.2"
+androidx-test-ext-junit = "1.1.5"
+espresso-core = "3.5.1"
+lifecycle-runtime-ktx = "2.7.0"
+compose-viewmodel = "2.7.0"
+activity-compose = "1.9.0"
+compose-bom = "2024.04.01"
+compose-runtime = "1.6.6"
+constraintLayout = "1.0.1"
+hilt = "2.51"
+hiltNavigation = "1.2.0"
+coil = "2.6.0"
+navigation = "2.7.7"
+lottie = "6.0.0"
+kotlin-bom = "1.9.20"
+appcompat = "1.6.1"
+material = "1.11.0"
+kotlinCompilerExtVersion = "1.5.9"
+compileSdk = "34"
+minSdk = "24"
+uiTooling = "1.6.6"
+firebase = "32.8.1"
+firebase-plugin = "4.4.1"
+secureSharedPref = "1.1.0-alpha06"
+lazyFlow = "1.1.0"
+androidxMetrics = "1.0.0-beta01"
+kotlinxSerializationJson = "1.6.3"
+gemini = "0.4.0"
+
+[libraries]
+## Kotlin
+kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+## Compose
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
+material3 = { group = "androidx.compose.material3", name = "material3" }
+windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose-runtime" }
+compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-ktx" }
+
+## Hilt
+androidHilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+
+## Android
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintLayout" }
+navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+secureSharedPref = { group = "androidx.security", name = "security-crypto", version.ref = "secureSharedPref" }
+androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
+gemini = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "gemini" }
+
+## Other
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
+lazy-flow = { group = "io.github.aghajari", name = "LazyFlowLayout", version.ref = "lazyFlow" }
+
+## Test
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+
+[plugins]
+com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+androidLibrary = { id = "com.android.library", version.ref = "com-android-application" }
+firebase = { id = "com.google.gms.google-services", version.ref = "firebase-plugin" }
+[bundles]
+

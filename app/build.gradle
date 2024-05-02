@@ -1,0 +1,95 @@
+plugins {
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.firebase)
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.kitchenpal'
+    compileSdk libs.versions.compileSdk.get().toInteger()
+    defaultConfig {
+        applicationId "com.kitchenpal"
+        minSdk libs.versions.minSdk.get().toInteger()
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            _isDebuggable true
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.kotlinCompilerExtVersion.get()
+    }
+}
+
+dependencies {
+    implementation project(':core:designsystem')
+    implementation project(':core:ui')
+    implementation project(':onboarding')
+    implementation project(':authentication')
+    implementation project(':preferences')
+
+    implementation libs.core.ktx
+    implementation libs.lifecycle.runtime.ktx
+    implementation platform(libs.compose.bom)
+    implementation libs.activity.compose
+    implementation libs.ui.tooling.preview
+    implementation libs.material3
+    implementation libs.windowSizeClass
+    implementation libs.constraintLayout
+    debugImplementation libs.androidx.ui.tooling
+    debugImplementation libs.ui.test.manifest
+
+    // Hilt
+    implementation libs.hilt.navigation
+    implementation libs.androidHilt
+    kapt libs.hilt.compiler
+
+    // Coil
+    implementation libs.coil
+
+    // Navigation
+    implementation libs.navigation
+
+    // Lottie
+    implementation libs.lottie
+
+    // Firebase
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.analytics
+    implementation libs.firebase.firestore
+
+    // AI
+    implementation libs.gemini
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.espresso.core
+    androidTestImplementation platform(libs.compose.bom)
+    androidTestImplementation libs.ui.test.junit4
+}
+
+kapt {
+    correctErrorTypes true
+}

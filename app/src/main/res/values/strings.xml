@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KitchenPal</string>
+
+    <string-array name="authentication_init">
+        <item>Welcome to KitchenPal</item>
+        <item>I\'m here to make cooking joyful and help you to enjoy your meal</item>
+        <item>What should I call?</item>
+    </string-array>
+
+</resources>

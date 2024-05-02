@@ -1,6 +1,6 @@
 [versions]
 com-android-application = "8.2.2"
-org-jetbrains-kotlin-android = "1.9.22"
+kotlin-version = "1.9.22"
 core-ktx = "1.13.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -28,12 +28,14 @@ firebase-plugin = "4.4.1"
 secureSharedPref = "1.1.0-alpha06"
 lazyFlow = "1.1.0"
 androidxMetrics = "1.0.0-beta01"
-gson = "2.10.1"
+kotlinxSerializationJson = "1.6.3"
+gemini = "0.4.0"
 
 [libraries]
 ## Kotlin
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 ## Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -60,7 +62,8 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 secureSharedPref = { group = "androidx.security", name = "security-crypto", version.ref = "secureSharedPref" }
 androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
-gson = {group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+gemini = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "gemini" }
+
 ## Other
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
@@ -80,7 +83,8 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidLibrary = { id = "com.android.library", version.ref = "com-android-application" }
 firebase = { id = "com.google.gms.google-services", version.ref = "firebase-plugin" }

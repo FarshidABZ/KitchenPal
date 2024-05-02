@@ -1,11 +1,11 @@
-package com.kitchenpal
+package com.kitchenpal.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
-import com.kitchenpal.home.navigation.KitchenPalApp
-import com.kitchenpal.home.navigation.rememberKitchenPalAppState
+import com.kitchenpal.main.navigation.KitchenPalApp
+import com.kitchenpal.main.navigation.rememberKitchenPalAppState
 import dagger.hilt.android.AndroidEntryPoint
 
 

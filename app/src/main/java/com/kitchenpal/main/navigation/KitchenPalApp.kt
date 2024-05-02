@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.kitchenpal.home.navigation
+package com.kitchenpal.main.navigation
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets

@@ -1,4 +1,4 @@
-package com.kitchenpal.home.navigation
+package com.kitchenpal.main.navigation
 
 import androidx.annotation.DrawableRes
 

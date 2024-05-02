@@ -1,4 +1,4 @@
-package com.kitchenpal.home.navigation
+package com.kitchenpal.main.navigation
 
 import androidx.compose.material3.Text
 import androidx.navigation.NavController

@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation project(':core:designsystem')
     implementation project(':core:ui')
+    implementation project(':core:common')
     implementation project(':onboarding')
     implementation project(':authentication')
     implementation project(':preferences')
@@ -82,6 +83,10 @@ dependencies {
 
     // AI
     implementation libs.gemini
+
+    // Ktor
+    implementation libs.ktor.client.core
+    implementation libs.ktor.client.okhttp
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

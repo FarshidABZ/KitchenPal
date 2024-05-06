@@ -1,6 +1,6 @@
 [versions]
 com-android-application = "8.2.2"
-kotlin-version = "1.9.22"
+kotlin-version = "1.9.23"
 core-ktx = "1.13.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -30,6 +30,7 @@ lazyFlow = "1.1.0"
 androidxMetrics = "1.0.0-beta01"
 kotlinxSerializationJson = "1.6.3"
 gemini = "0.4.0"
+ktor = "2.3.10"
 
 [libraries]
 ## Kotlin
@@ -80,6 +81,10 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+
+# Ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }

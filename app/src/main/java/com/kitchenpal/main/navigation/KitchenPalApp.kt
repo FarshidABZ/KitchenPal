@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +37,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -54,7 +61,7 @@ import com.kitchenpal.preferences.navigation.preferencesScreen
 
 
 @Composable
-fun KitchenPalApp(appState: KitchenPalState, modifier: Modifier = Modifier) {
+fun KitchenPalApp(appState: KitchenPalState) {
     var bottomBarState by rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by appState.navController.currentBackStackEntryAsState()
 
@@ -74,7 +81,6 @@ fun KitchenPalApp(appState: KitchenPalState, modifier: Modifier = Modifier) {
         Row(
             Modifier
                 .fillMaxSize()
-                .padding(padding)
                 .consumeWindowInsets(padding)
                 .windowInsetsPadding(
                     WindowInsets.safeDrawing.only(
@@ -124,12 +130,13 @@ fun clearBackStack(navController: NavHostController) {
 fun KitchenPalBottomBar(
     destinations: List<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
-    currentDestination: NavDestination?,
-    modifier: Modifier = Modifier,
+    currentDestination: NavDestination?
 ) {
     NavigationBar(
+        containerColor = Color(0xFFFBFAFA),
         modifier = Modifier
             .fillMaxWidth()
+            .customShadow(Color.Black, offsetY = 2.dp, borderRadius = 32.dp, shadowRadius = 8.dp)
             .clip(
                 RoundedCornerShape(
                     topStart = Radius.spaceXXXXLarge,
@@ -155,6 +162,50 @@ fun KitchenPalBottomBar(
         }
     }
 }
+
+fun Modifier.customShadow(
+    color: Color = Color.Black,
+    alpha: Float = 0.5f,
+    shadowRadius: Dp = 8.dp,
+    borderRadius: Dp = 0.dp,
+    offsetX: Dp = 0.dp,
+    offsetY: Dp = 4.dp
+): Modifier = this.then(
+    Modifier.drawBehind {
+        val paint = Paint().apply {
+            this.color = color.copy(alpha = alpha)
+            this.isAntiAlias = true
+        }
+        drawShadow(paint, shadowRadius, borderRadius, offsetX, offsetY)
+    }
+)
+
+private fun DrawScope.drawShadow(
+    paint: Paint,
+    shadowRadius: Dp,
+    borderRadius: Dp,
+    offsetX: Dp,
+    offsetY: Dp
+) {
+    drawIntoCanvas { canvas ->
+        paint.asFrameworkPaint().setShadowLayer(
+            shadowRadius.toPx(),
+            offsetX.toPx(),
+            offsetY.toPx(),
+            paint.color.toArgb()
+        )
+        canvas.drawRoundRect(
+            offsetX.toPx(),
+            offsetY.toPx(),
+            size.width + offsetX.toPx(),
+            size.height + offsetY.toPx(),
+            borderRadius.toPx(),
+            borderRadius.toPx(),
+            paint
+        )
+    }
+}
+
 
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
     this?.hierarchy?.any {

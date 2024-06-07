@@ -59,3 +59,4 @@ internal val md_theme_light_disable_button_content = Color(0x6128281F)
 
 val colorOnSurfaceVariant2 = Color(0xFF656565)
 val colorOnSurfaceVariant3 = Color(0xFFDDDDDD)
+val colorHomeBackground = Color(0XFFFFE2D9)

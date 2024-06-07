@@ -39,13 +39,13 @@ android {
 dependencies {
     api libs.core.ktx
     api platform(libs.kotlin.bom)
+    api libs.kotlinx.serialization.json
     implementation libs.secureSharedPref
     implementation libs.androidHilt
     kapt libs.hilt.compiler
 
     implementation libs.compose.viewmodel
 
-    implementation libs.kotlinx.serialization.json
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit

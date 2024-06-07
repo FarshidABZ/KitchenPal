@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">KitchenPal</string>
 
-    <string-array name="authentication_init">
-        <item>Welcome to KitchenPal</item>
-        <item>I\'m here to make cooking joyful and help you to enjoy your meal</item>
-        <item>What should I call?</item>
-    </string-array>
+    <string name="home_welcome_message_title">Hi There</string>
+    <string name="home_welcome_message_desc">Find recipes based on what you already have at home!</string>
+
+    <string name="find_recipe">Find Recipes</string>
 
 </resources>

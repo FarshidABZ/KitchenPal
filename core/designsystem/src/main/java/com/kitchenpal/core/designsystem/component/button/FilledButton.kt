@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,12 +41,14 @@ fun FilledButton(
     disabledContainerColor: Color = md_theme_light_disable_button,
     disabledContentColor: Color = md_theme_light_disable_button_content,
     text: String,
+    elevation: ButtonElevation? = null,
     @DrawableRes leadingIcon: Int? = null,
     @DrawableRes trailingIcon: Int? = null,
     onButtonClickListener: () -> Unit
 ) {
     FilledTonalButton(
         modifier = modifier,
+        elevation = elevation,
         colors = ButtonDefaults.filledTonalButtonColors(
             containerColor = backgroundColor,
             contentColor = contentColor,

@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.kitchenpal.feature.home.HomeScreenRoute
 
 const val TOP_LEVEL_ROUTE = "top_level_route"
 
@@ -41,7 +42,7 @@ fun NavController.navigateToProfile(navOptions: NavOptions) =
 fun NavGraphBuilder.topLevelScreens() {
     navigation(startDestination = HOME_ROUTE, route = TOP_LEVEL_ROUTE) {
         composable(HOME_ROUTE) {
-            Text(text = "Welcome to Kitchen pal list")
+            HomeScreenRoute()
         }
         composable(CHAT_ROUTE) {
             Text(text = "Welcome to Chat")

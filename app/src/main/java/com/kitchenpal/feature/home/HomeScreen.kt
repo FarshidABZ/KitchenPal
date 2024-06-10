@@ -46,15 +46,16 @@ import com.kitchenpal.core.designsystem.component.button.FilledButton
 import com.kitchenpal.core.designsystem.theme.Dimens
 import com.kitchenpal.core.designsystem.theme.Elevation
 import com.kitchenpal.core.designsystem.theme.KitchenPalTheme
+import com.kitchenpal.core.share.recipe.RecipeSharedViewModel
 import kotlin.math.ceil
 import kotlin.math.floor
 
 @Composable
-fun HomeScreenRoute(viewModel: HomeViewModel = hiltViewModel()) {
-    val recipeList by viewModel.recipes.collectAsState(initial = emptyList())
-    viewModel.observeRecipes()
-
-    HomeScreen(recipeList)
+fun HomeScreenRoute(viewModel: HomeViewModel = hiltViewModel(), sharedViewModel: RecipeSharedViewModel) {
+//    val recipeList by viewModel.recipes.collectAsState(initial = emptyList())
+//    viewModel.observeRecipes()
+//
+//    HomeScreen(recipeList)
 }
 
 @Composable

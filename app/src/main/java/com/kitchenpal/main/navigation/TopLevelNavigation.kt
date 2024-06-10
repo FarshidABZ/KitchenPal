@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.kitchenpal.core.share.recipe.RecipeSharedViewModel
 import com.kitchenpal.feature.home.HomeScreenRoute
 
 const val TOP_LEVEL_ROUTE = "top_level_route"
@@ -39,10 +40,10 @@ fun NavController.navigateToFavorite(navOptions: NavOptions) =
 fun NavController.navigateToProfile(navOptions: NavOptions) =
     navigate(PROFILE_ROUTE, navOptions)
 
-fun NavGraphBuilder.topLevelScreens() {
+fun NavGraphBuilder.topLevelScreens(sharedViewModel: RecipeSharedViewModel) {
     navigation(startDestination = HOME_ROUTE, route = TOP_LEVEL_ROUTE) {
         composable(HOME_ROUTE) {
-            HomeScreenRoute()
+            HomeScreenRoute(sharedViewModel = sharedViewModel)
         }
         composable(CHAT_ROUTE) {
             Text(text = "Welcome to Chat")

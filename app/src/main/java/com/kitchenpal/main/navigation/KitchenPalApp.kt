@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -55,17 +56,17 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kitchenpal.authentication.navigation.authenticationGraph
 import com.kitchenpal.authentication.navigation.navigateAuth
 import com.kitchenpal.core.designsystem.theme.Radius
-import com.kitchenpal.onboarding.navigation.ONBOARDING_ROUTE
+import com.kitchenpal.core.share.recipe.RecipeSharedViewModel
 import com.kitchenpal.onboarding.navigation.onboardingScreen
 import com.kitchenpal.preferences.navigation.preferencesScreen
 
 
 @Composable
 fun KitchenPalApp(appState: KitchenPalState) {
-    var bottomBarState by rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by appState.navController.currentBackStackEntryAsState()
-
-    bottomBarState = getBottomBarVisibility(navBackStackEntry)
+    val bottomBarState by rememberSaveable(navBackStackEntry) {
+        mutableStateOf(getBottomBarVisibility(navBackStackEntry))
+    }
 
     Scaffold(
         bottomBar = {
@@ -96,11 +97,13 @@ fun KitchenPalApp(appState: KitchenPalState) {
 @Composable
 fun NavigationFlow(
     appState: KitchenPalState,
-    startDestination: String = ONBOARDING_ROUTE,
+    startDestination: String = TOP_LEVEL_ROUTE,
 ) {
     val navController = appState.navController
+    val sharedViewModel: RecipeSharedViewModel = hiltViewModel()
+
     NavHost(navController = navController, startDestination = startDestination) {
-        topLevelScreens()
+        topLevelScreens(sharedViewModel)
         onboardingScreen {
             clearBackStack(navController)
             appState.navigateToTopLevelDestination(TopLevelDestination.HOME)
